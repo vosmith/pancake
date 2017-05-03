@@ -6,9 +6,9 @@ import (
 	"fmt"
 )
 
-func TestFlattenInt641D(t *testing.T) {
+func TestInt1D(t *testing.T) {
 	arr := []int{1,2,3}
-	arr2, err := FlattenInt64(arr)
+	arr2, err := Ints(arr)
 	if err != nil {
 		fmt.Println(err)
 		t.Fatal("Failed, error")
@@ -19,13 +19,13 @@ func TestFlattenInt641D(t *testing.T) {
 	fmt.Println(arr2)
 }
 
-func TestFlattenInt642D(t *testing.T) {
-	arr := [][]int64{
+func TestInt2D(t *testing.T) {
+	arr := [][]int{
 		{1,2,3},
 		{4,5,6},
 		{7,8,9},
 		{0,11,12}}
-	arr2, err := FlattenInt64(arr)
+	arr2, err := Ints(arr)
 	if err != nil {
 		fmt.Println(err)
 		t.Fatal("Failed, error")
@@ -36,15 +36,15 @@ func TestFlattenInt642D(t *testing.T) {
 	fmt.Println(arr2)
 }
 
-func TestFlattenInt643D(t *testing.T) {
-	arr := [][][]int64{
-		[][]int64{
-			[]int64{1,2,3},
-			[]int64{4,5,6}},
-		[][]int64{
-			[]int64{7,8,9},
-			[]int64{10,11,12}}}
-	arr2, err := FlattenInt64(arr)
+func TestInt3D(t *testing.T) {
+	arr := [][][]int{
+		[][]int{
+			[]int{1,2,3},
+			[]int{4,5,6}},
+		[][]int{
+			[]int{7,8,9},
+			[]int{10,11,12}}}
+	arr2, err := Ints(arr)
 	if err != nil {
 		fmt.Println(err)
 		t.Fatal("Failed, error")

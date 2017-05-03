@@ -1,3 +1,5 @@
+// pancake contains a few helper functions for flattening multidimensional
+// slices of certain types.  It currently supports string, int, and float64.
 package pancake
 
 import (
@@ -6,19 +8,27 @@ import (
   "errors"
 )
 
-func FlattenString(a interface{}) ([]string, error){
+// Strings takes a multidimensional slice of strings and flattens it into
+// a 1-dimensional slice of strings in row major order.
+func Strings(a interface{}) ([]string, error){
+  // Yep, I get it.  I think I want Generics too...
   return flattenDepthString(reflect.ValueOf(a), getDepth(a))
 }
 
-func FlattenInt64(a interface{}) ([]int64, error){
-  return flattenDepthInt64(reflect.ValueOf(a), getDepth(a))
+// Ints takes a multidimensional slice of ints and flattens it into
+// a 1-dimensional slice of ints in row major order.
+func Ints(a interface{}) ([]int, error){
+  return flattenDepthInt(reflect.ValueOf(a), getDepth(a))
 }
 
-func FlattenFloat64(a interface{}) ([]float64, error){
+// Float64s takes a multidimensional slice of float64 and flattens it into
+// a 1-dimensional slice of float64 in row major order.
+func Float64s(a interface{}) ([]float64, error){
   return flattenDepthFloat64(reflect.ValueOf(a), getDepth(a))
 }
 
 func flattenDepthString(a reflect.Value, depth int) ([]string, error) {
+  // Ah, ok.  Pattern matching would be nice to have in Go.
   if depth < 1 {
     return []string{}, errors.New("input must be an slice of strings")
   } else if depth == 1 {
@@ -43,24 +53,24 @@ func flattenDepthString(a reflect.Value, depth int) ([]string, error) {
   }
 }
 
-func flattenDepthInt64(a reflect.Value, depth int) ([]int64, error) {
+func flattenDepthInt(a reflect.Value, depth int) ([]int, error) {
   if depth < 1 {
-    return []int64{}, errors.New("input must be an slice of ints")
+    return []int{}, errors.New("input must be an slice of ints")
   } else if depth == 1 {
-    intArr := make([]int64, a.Len())
+    intArr := make([]int, a.Len())
 
     for i := 0; i < a.Len(); i++ {
-      intArr[i] = a.Index(i).Int()
+      intArr[i] = int(a.Index(i).Int())
     }
 
     return intArr, nil
   } else {
-    intArr := []int64{}
+    intArr := []int{}
 
     for i := 0; i < a.Len(); i++ {
-      res, err := flattenDepthInt64(a.Index(i), depth -1)
+      res, err := flattenDepthInt(a.Index(i), depth -1)
       if err != nil{
-        return []int64{}, err
+        return []int{}, err
       }
       intArr = append(intArr, res...)
     }

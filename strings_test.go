@@ -6,9 +6,9 @@ import (
 	"fmt"
 )
 
-func TestFlattenString1D(t *testing.T) {
+func TestString1D(t *testing.T) {
 	arr := []string{"a","b","c"}
-	arr2, err := FlattenString(arr)
+	arr2, err := Strings(arr)
 	if err != nil {
 		fmt.Println(err)
 		t.Fatal("Failed, error")
@@ -19,13 +19,13 @@ func TestFlattenString1D(t *testing.T) {
 	fmt.Println(arr2)
 }
 
-func TestFlattenString2D(t *testing.T) {
+func TestString2D(t *testing.T) {
 	arr := [][]string{
 		{"a","b","c"},
 		{"d","e","f"},
 		{"g","h","i"},
 		{"j","k","j"}}
-	arr2, err := FlattenString(arr)
+	arr2, err := Strings(arr)
 	if err != nil {
 		fmt.Println(err)
 		t.Fatal("Failed, error")
@@ -36,7 +36,7 @@ func TestFlattenString2D(t *testing.T) {
 	fmt.Println(arr2)
 }
 
-func TestFlattenString3D(t *testing.T) {
+func TestString3D(t *testing.T) {
 	arr := [][][]string{
 		[][]string{
 			[]string{"a","b","c"},
@@ -44,7 +44,7 @@ func TestFlattenString3D(t *testing.T) {
 		[][]string{
 			[]string{"g","h","i"},
 			[]string{"j","k","l"}}}
-	arr2, err := FlattenString(arr)
+	arr2, err := Strings(arr)
 	if err != nil {
 		fmt.Println(err)
 		t.Fatal("Failed, error")
