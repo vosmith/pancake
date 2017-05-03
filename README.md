@@ -13,6 +13,7 @@ package main
 
 import (
   "github.com/vosmith/pancake"
+  "fmt"
 )
 
 func main() {
