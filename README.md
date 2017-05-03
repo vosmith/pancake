@@ -4,7 +4,7 @@ slices.  Currently it support `string`, `int`, and `float64` slices.
 
 ## Installation
 ```
-go get github.com/vosmith08/pancake
+go get github.com/vosmith/pancake
 ```
 
 ## Usage
@@ -12,7 +12,7 @@ go get github.com/vosmith08/pancake
 package main
 
 import (
-  "github.com/vosmith08/pancake"
+  "github.com/vosmith/pancake"
 )
 
 func main() {
