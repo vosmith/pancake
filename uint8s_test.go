@@ -5,9 +5,9 @@ import (
 	"fmt"
 )
 
-func TestFloat641D(t *testing.T) {
-	arr := []float64{1.0,2.0,3.0}
-	arr2, err := Float64s(arr)
+func TestUint81D(t *testing.T) {
+	arr := []uint8{1,2,3}
+	arr2, err := Uint8s(arr)
 	if err != nil {
 		fmt.Println(err)
 		t.Fatal("Failed, error")
@@ -18,13 +18,13 @@ func TestFloat641D(t *testing.T) {
 	fmt.Println(arr2)
 }
 
-func TestFloat642D(t *testing.T) {
-	arr := [][]float64{
-		{1.0,2.0,3.0},
-		{4.0,5.0,6.0},
-		{7.0,8.0,9.0},
-		{0.0,11.0,12.0}}
-	arr2, err := Float64s(arr)
+func TestUint82D(t *testing.T) {
+	arr := [][]uint8{
+		{1,2,3},
+		{4,5,6},
+		{7,8,9},
+		{0,11,12}}
+	arr2, err := Uint8s(arr)
 	if err != nil {
 		fmt.Println(err)
 		t.Fatal("Failed, error")
@@ -35,15 +35,15 @@ func TestFloat642D(t *testing.T) {
 	fmt.Println(arr2)
 }
 
-func TestFloat643D(t *testing.T) {
-	arr := [][][]float64{
-		[][]float64{
-			[]float64{1.0,2.0,3.0},
-			[]float64{4.0,5.0,6.0}},
-		[][]float64{
-			[]float64{7.0,8.0,9.0},
-			[]float64{10.0,11.0,12.0}}}
-	arr2, err := Float64s(arr)
+func TestUint83D(t *testing.T) {
+	arr := [][][]uint8{
+		{
+			{1,2,3},
+			{4,5,6}},
+		{
+			{7,8,9},
+			{10,11,12}}}
+	arr2, err := Uint8s(arr)
 	if err != nil {
 		fmt.Println(err)
 		t.Fatal("Failed, error")

@@ -1,5 +1,5 @@
 // pancake contains a few helper functions for flattening multidimensional
-// slices of certain types.  It currently supports string, int, and float64.
+// slices of certain types.  It currently supports string, int, float64 and uint8.
 package pancake
 
 import (
@@ -25,6 +25,37 @@ func Ints(a interface{}) ([]int, error){
 // a 1-dimensional slice of float64 in row major order.
 func Float64s(a interface{}) ([]float64, error){
   return flattenDepthFloat64(reflect.ValueOf(a), getDepth(a))
+}
+
+// Uint8s takes a multidimensional slice of uint8s and flattens it into
+// a 1-dimensional slice of uint8s in row major order.
+func Uint8s(a interface{}) ([]uint8, error) {
+	return flattenDepthUint8(reflect.ValueOf(a), getDepth(a))
+}
+
+func flattenDepthUint8( a reflect.Value, depth int) ([]uint8, error) {
+	if depth < 1 {
+    return []uint8{}, errors.New("input must be an slice of uint8s")
+  } else if depth == 1 {
+    intArr := make([]uint8, a.Len())
+
+    for i := 0; i < a.Len(); i++ {
+      intArr[i] = uint8(a.Index(i).Uint())
+    }
+
+    return intArr, nil
+  } else {
+    intArr := []uint8{}
+
+    for i := 0; i < a.Len(); i++ {
+      res, err := flattenDepthUint8(a.Index(i), depth -1)
+      if err != nil{
+        return []uint8{}, err
+      }
+      intArr = append(intArr, res...)
+    }
+    return intArr, nil
+  }
 }
 
 func flattenDepthString(a reflect.Value, depth int) ([]string, error) {
