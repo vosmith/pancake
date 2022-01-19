@@ -1,8 +1,7 @@
-package pancake_test
+package pancake
 
 import (
 	"testing"
-	. "github.com/vosmith/pancake"
 	"fmt"
 )
 

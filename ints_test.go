@@ -1,8 +1,7 @@
-package pancake_test
+package pancake
 
 import (
 	"testing"
-	. "github.com/vosmith/pancake"
 	"fmt"
 )
 
@@ -38,12 +37,12 @@ func TestInt2D(t *testing.T) {
 
 func TestInt3D(t *testing.T) {
 	arr := [][][]int{
-		[][]int{
-			[]int{1,2,3},
-			[]int{4,5,6}},
-		[][]int{
-			[]int{7,8,9},
-			[]int{10,11,12}}}
+		{
+			{1,2,3},
+			{4,5,6}},
+		{
+			{7,8,9},
+			{10,11,12}}}
 	arr2, err := Ints(arr)
 	if err != nil {
 		fmt.Println(err)
